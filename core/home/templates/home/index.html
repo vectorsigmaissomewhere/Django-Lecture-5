@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Django</title>
+    <style>
+        table, th, td {
+  border: 1px solid black;
+}
+    </style>
+</head>
+<body>
+    <h1>This is index Page</h1>
+    <h1>This is generated from templates</h1>
+    {{peoples}}
+
+    <a href="/contact/">
+        Contact
+    </a>
+    <a href="/about/">
+        About
+    </a>
+    <table class="container">
+        <tr>
+          <th>S. No</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Can Vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{people.name}}</td>
+          <td>{{people.age}}</td>
+          <td {% if people.age >= 18 %} style="background:red" {% endif %}>
+            {% if people.age >= 18 %}
+            Can Vote
+            {% else %}
+            Can't Vote
+            {% endif %}
+          </td>
+        </tr> 
+        {% endfor %}
+      </table>
+      <p>
+        {% if "cucumber" in vegetables %}
+            Yes Available
+        {% elif "Tomato"  in vegetables %}
+            Yes Available
+        {% else %}
+            Not Available
+        {% endif %}
+      </p>
+      <p>
+        {{text}}
+      </p>
+</body>
+</html>
